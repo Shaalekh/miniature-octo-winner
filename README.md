@@ -44,13 +44,17 @@ attendance_mypi3/
 Install dependencies:
 
 ```bash
-pip install boto3 opencv-python pillow picamera2
+# On Raspberry Pi OS – install system packages first (recommended)
+sudo apt install python3-picamera2 python3-opencv
+
+# Then install the remaining Python packages into your virtual environment
+pip install -r requirements.txt
 ```
 
-> **Note:** On Raspberry Pi OS, `picamera2` and `opencv4` are best installed via `apt`:
-> ```bash
-> sudo apt install python3-picamera2 python3-opencv
-> ```
+> **Note:** `picamera2` and `opencv4` are best installed via `apt` on Raspberry Pi OS
+> because they depend on native system libraries. The `requirements.txt` covers the
+> rest (`boto3`, `Pillow`). If you are running outside Raspberry Pi OS, you can also
+> `pip install picamera2 opencv-python` directly.
 
 ### AWS Setup
 
