@@ -1,21 +1,18 @@
-from picamera2 import Picamera2
 import cv2
 
 
 class CameraService:
     def __init__(self):
-        self.picam2 = Picamera2()
-
-        config = self.picam2.create_preview_configuration(
-            main={"size": (640, 480)}
-        )
-
-        self.picam2.configure(config)
-        self.picam2.start()
+        self.cap = cv2.VideoCapture(0)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
     def get_frame(self):
-        frame = self.picam2.capture_array()
-        return frame
+        ret, frame = self.cap.read()
+        if not ret:
+            return None
+        # Convert BGR (OpenCV default) to RGB for display
+        return cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
     def release(self):
-        self.picam2.stop()
+        self.cap.release()
