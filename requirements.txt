@@ -1,0 +1,7 @@
+boto3>=1.20.0
+Pillow>=9.0.0
+opencv-python>=4.5.0
+# picamera2 must be installed via apt on Raspberry Pi OS:
+#   sudo apt install python3-picamera2
+# If not using Raspberry Pi OS, install via pip:
+#   pip install picamera2
